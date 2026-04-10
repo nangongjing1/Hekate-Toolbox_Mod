@@ -100,7 +100,7 @@ void GuiHekate::initializeForRestrictedMode() {
     shutdownButton->adjacentButton[ADJ_RIGHT] = 1;
     shutdownButton->drawAction = [shutdownButton](Gui *gui, u16 x, u16 y, bool *isActivated) {
         gui->drawRectangled(x, y, shutdownButton->volume.first, shutdownButton->volume.second, currTheme.submenuButtonColor);
-        gui->drawTextAligned(font20, x + shutdownButton->volume.first / 2, y + shutdownButton->volume.second / 2 + 10, currTheme.textColor, "关机", ALIGNED_CENTER);
+        gui->drawTextAligned(font20, x + shutdownButton->volume.first / 2, y + shutdownButton->volume.second / 2 + 10, currTheme.textColor, "关闭主机", ALIGNED_CENTER);
     };
     shutdownButton->inputAction = [&](u32 kdown, bool *isActivated) {
         if (kdown & HidNpadButton_A) {
@@ -116,7 +116,7 @@ void GuiHekate::initializeForRestrictedMode() {
     rebootButton->adjacentButton[ADJ_LEFT] = 0;
     rebootButton->drawAction = [rebootButton](Gui *gui, u16 x, u16 y, bool *isActivated) {
         gui->drawRectangled(x, y, rebootButton->volume.first, rebootButton->volume.second, currTheme.submenuButtonColor);
-        gui->drawTextAligned(font20, x + rebootButton->volume.first / 2, y + rebootButton->volume.second / 2 + 10, currTheme.textColor, "重启", ALIGNED_CENTER);
+        gui->drawTextAligned(font20, x + rebootButton->volume.first / 2, y + rebootButton->volume.second / 2 + 10, currTheme.textColor, "重新启动", ALIGNED_CENTER);
     };
     rebootButton->inputAction = [&](u32 kdown, bool *isActivated) {
         if (kdown & HidNpadButton_A) {
@@ -140,7 +140,7 @@ void GuiHekate::InitializeRegular() {
     profileButton->adjacentButton[ADJ_DOWN] = 1;
     profileButton->volume = {Gui::g_framebuffer_width - 400, 80};
     profileButton->drawAction = [&](Gui *gui, u16 x, u16 y, bool *isActivated) {
-        gui->drawTextAligned(font20, x + 37, y + 50, currTheme.textColor, "Hekate配置文件", ALIGNED_LEFT);
+        gui->drawTextAligned(font20, x + 37, y + 50, currTheme.textColor, "Hekate启动配置", ALIGNED_LEFT);
         std::string autoBootName = m_currRebootConfig.name;
 
         if (autoBootName.length() >= 25) {
@@ -157,7 +157,7 @@ void GuiHekate::InitializeRegular() {
             for (auto const &autoBootEntry : m_rebootConfigs)
                 rebootNames.push_back(autoBootEntry.name);
 
-            (new ListSelector("加载Hekate配置文件", "\uE0E1 返回     \uE0E0 确定", rebootNames, currRebootEntryIndex))
+            (new ListSelector("加载Hekate启动配置", "\uE0E1 返回     \uE0E0 确定", rebootNames, currRebootEntryIndex))
                 ->setInputAction([&](u32 k, u16 selectedItem) {
                     if (k & HidNpadButton_A) {
                         currRebootEntryIndex = selectedItem;
@@ -238,15 +238,15 @@ void GuiHekate::draw() {
     {
         if (restrictedMode)
         {
-            Gui::drawTextAligned(font24, Gui::g_framebuffer_width / 2, 150, currTheme.activatedColor, "限制模式", ALIGNED_CENTER);
+            Gui::drawTextAligned(font24, Gui::g_framebuffer_width / 2, 150, currTheme.activatedColor, "受限模式", ALIGNED_CENTER);
             Gui::drawTextAligned(font20, Gui::g_framebuffer_width / 2, 200, currTheme.textColor, "可选择以下两个选项之一:", ALIGNED_CENTER);
 
-            const std::string restrictedModeReason = "限制模式原因:" + errorMessage;
+            const std::string restrictedModeReason = "受限模式原因:" + errorMessage;
             Gui::drawTextAligned(font20, Gui::g_framebuffer_width / 2, Gui::g_framebuffer_height - 150, currTheme.textColor, restrictedModeReason.c_str(), ALIGNED_CENTER);
         }
         else
         {
-            Gui::drawTextAligned(font20, Gui::g_framebuffer_width / 2, 150, currTheme.textColor, "选择你想要重启任天堂Switch的Hekate配置文件 \n 请确保在执行此操作之前关闭所有打开的程序，因为这将立即重新启动您的设备。", ALIGNED_CENTER);
+            Gui::drawTextAligned(font20, Gui::g_framebuffer_width / 2, 150, currTheme.textColor, "选择你想要重启到的Hekate启动项 \n 请确保在执行此操作之前关闭所有打开的程序，因为这将立即重新启动您的设备。", ALIGNED_CENTER);
         }
     }
     else

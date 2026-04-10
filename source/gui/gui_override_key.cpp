@@ -137,7 +137,7 @@ GuiOverrideKey::GuiOverrideKey() : Gui() {
                     if (appletName == nullptr) {
                         appletName = title->name;
                     } else {
-                        gui->drawTextAligned(font20, Gui::g_framebuffer_width / 2, y + 350, currTheme.activatedColor, "通过小程序模式打开HBmemu菜单可能无法为自制软件提供足够的内存。 \n 可按住 \uE0E5 点击任一游戏进入, 打开HBmenu菜单的应用程序模式, 获得完整的内存访问权限。", ALIGNED_CENTER);
+                        gui->drawTextAligned(font20, Gui::g_framebuffer_width / 2, y + 350, currTheme.activatedColor, "通过小程序模式打开HBmemu菜单可能无法为自制软件提供足够的内存。 \n 可按住 \uE0E5 点击任一游戏进入, 打开HBmenu菜单的前端模式, 获得完整的内存访问权限。", ALIGNED_CENTER);
                     }
 
                     gui->drawTextAligned(font24, x, y - 20, currTheme.textColor, appletName, ALIGNED_LEFT);
@@ -175,7 +175,7 @@ void GuiOverrideKey::draw() {
     Gui::drawRectangle((u32)((Gui::g_framebuffer_width - 1220) / 2), 87, 1220, 1, currTheme.textColor);
     Gui::drawRectangle((u32)((Gui::g_framebuffer_width - 1220) / 2), Gui::g_framebuffer_height - 73, 1220, 1, currTheme.textColor);
     Gui::drawTextAligned(fontIcons, 70, 68, currTheme.textColor, "\uE130", ALIGNED_LEFT);
-    Gui::drawTextAligned(font24, 70, 58, currTheme.textColor, "        应用配置设置", ALIGNED_LEFT);
+    Gui::drawTextAligned(font24, 70, 58, currTheme.textColor, "        HBmenu入口设置", ALIGNED_LEFT);
     Gui::drawTextAligned(font20, Gui::g_framebuffer_width - 50, Gui::g_framebuffer_height - 25, currTheme.textColor, "\uE0E1 返回     \uE0E0 确定", ALIGNED_RIGHT);
 
     drawButtons();
